@@ -10,16 +10,36 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    let imagePicker = UIImagePickerController()
     
     @IBOutlet weak var mainImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        //imagePicker.sourceType = .camera //for real phone
+        imagePicker.allowsEditing = false
     }
 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let userPickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            mainImage.image = userPickedImage
+            
+            guard let ciimage = CIImage(image: userPickedImage) else {
+                fatalError("Could not convert to CIImage")
+            }
+            print("finish")
+
+            //detect(image: ciimage)
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func cameraButton(_ sender: UIBarButtonItem) {
-        print("button pressed")
+        present(imagePicker, animated: true, completion: nil)
     }
     
 }
