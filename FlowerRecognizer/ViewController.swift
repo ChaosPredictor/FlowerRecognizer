@@ -15,10 +15,10 @@ import SwiftyJSON
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    let imagePicker = UIImagePickerController()
-    
+    @IBOutlet weak var textBox: UITextView!
     @IBOutlet weak var mainImage: UIImageView!
     
+    let imagePicker = UIImagePickerController()
     let WIKIPEDIA_URL = "https://en.wikipedia.org/w/api.php"
 
     
@@ -99,6 +99,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
                 let pageid = wikipediaResult["query"]["pageids"][0].intValue
                 let text = wikipediaResult["query"]["pages"]["\(pageid)"]["extract"]
+
+                self.textBox.text = "\(text)"
 
                 print(text)
 
