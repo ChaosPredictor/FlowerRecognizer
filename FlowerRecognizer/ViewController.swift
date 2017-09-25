@@ -56,7 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             if let firstResult = result.first {
                 //print(firstResult.identifier)
-                self.navigationItem.title = firstResult.identifier
+                self.navigationItem.title = firstResult.identifier.capitalized
                 //if firstResult.identifier.contains("hotdog") {
                 //    self.navigationItem.title = "Hotdog"
                 //} else {
