@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreML
+import Vision
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -32,11 +34,45 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             guard let ciimage = CIImage(image: userPickedImage) else {
                 fatalError("Could not convert to CIImage")
             }
-            print("finish")
+            //print("finish")
 
-            //detect(image: ciimage)
+            detect(image: ciimage)
         }
         imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func detect(image: CIImage) {
+        guard let model = try? VNCoreMLModel(for: FlowerClassifer().model) else {
+            fatalError("Loading CoreML Model Failed")
+        }
+        
+        let request = VNCoreMLRequest(model: model) { (request, error) in
+            guard let result = request.results as? [VNClassificationObservation] else {
+                fatalError("Could not ... ")
+            }
+            
+            //print(result)
+            
+            if let firstResult = result.first {
+                //print(firstResult.identifier)
+                self.navigationItem.title = firstResult.identifier
+                //if firstResult.identifier.contains("hotdog") {
+                //    self.navigationItem.title = "Hotdog"
+                //} else {
+                //    self.navigationItem.title = "NOT hotdog"
+                //}
+            }
+        }
+        
+        let handler = VNImageRequestHandler(ciImage: image)
+        
+        do {
+            try handler.perform([request])
+        } catch {
+            print(error)
+            fatalError("Could not perform handler")
+        }
     }
     
     
