@@ -20,11 +20,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         //imagePicker.sourceType = .camera //for real phone
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
+        //imagePicker.allowsEditing = false
+
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let userPickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let userPickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             mainImage.image = userPickedImage
             
             guard let ciimage = CIImage(image: userPickedImage) else {
