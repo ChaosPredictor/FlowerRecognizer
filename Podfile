@@ -8,5 +8,6 @@ target 'FlowerRecognizer' do
   # Pods for FlowerRecognizer
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
+  pod 'SDWebImage'
 
 end

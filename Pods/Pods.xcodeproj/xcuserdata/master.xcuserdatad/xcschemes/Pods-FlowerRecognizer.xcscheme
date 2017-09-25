@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "21533EE98C40F79A52925B0FB6815728"
+               BlueprintIdentifier = "6216A83D5F508353BD4DEED87E098862"
                BuildableName = "Pods_FlowerRecognizer.framework"
                BlueprintName = "Pods-FlowerRecognizer"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "21533EE98C40F79A52925B0FB6815728"
+            BlueprintIdentifier = "6216A83D5F508353BD4DEED87E098862"
             BuildableName = "Pods_FlowerRecognizer.framework"
             BlueprintName = "Pods-FlowerRecognizer"
             ReferencedContainer = "container:Pods.xcodeproj">

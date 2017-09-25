@@ -11,7 +11,7 @@ import CoreML
 import Vision
 import Alamofire
 import SwiftyJSON
-
+import SDWebImage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -64,7 +64,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.navigationItem.title = firstResult.identifier.capitalized
                 
                 
-                let params : [String : String] = ["format" : "json", "action" : "query", "prop" : "extracts", "exintro" : "", "explaintext" : "", "titles" : firstResult.identifier.capitalized, "indexpageids" : "", "redirects" : "1"]
+                let params : [String : String] = [
+                    "format" : "json",
+                    "action" : "query",
+                    "prop" : "extracts|pageimages",
+                    "exintro" : "",
+                    "explaintext" : "",
+                    "titles" : firstResult.identifier.capitalized,
+                    "indexpageids" : "", "redirects" : "1",
+                    "pithumbsize" : "500"
+                ]
                 
                 self.getWikipediaData(url : self.WIKIPEDIA_URL, parameters : params)
 
@@ -99,9 +108,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
                 let pageid = wikipediaResult["query"]["pageids"][0].intValue
                 let text = wikipediaResult["query"]["pages"]["\(pageid)"]["extract"]
+                let imageURL = wikipediaResult["query"]["pages"]["\(pageid)"]["thumbnail"]["source"].stringValue
 
                 self.textBox.text = "\(text)"
-
+                self.mainImage.sd_setImage(with: URL(string: imageURL))
+                
                 print(text)
 
                 //self.updateWeatherData(json: weatherResult)

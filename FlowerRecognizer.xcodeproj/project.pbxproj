@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2607A3F8ED4B7AC573B81E5F /* Pods_FlowerRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612DC38168E1F9440D3AD35E /* Pods_FlowerRecognizer.framework */; };
 		AFD1CAB01F783A1000AA16FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD1CAAF1F783A1000AA16FE /* AppDelegate.swift */; };
 		AFD1CAB51F783A1000AA16FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD1CAB31F783A1000AA16FE /* Main.storyboard */; };
 		AFD1CAB71F783A1000AA16FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFD1CAB61F783A1000AA16FE /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2607A3F8ED4B7AC573B81E5F /* Pods_FlowerRecognizer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,11 +188,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FlowerRecognizer/Pods-FlowerRecognizer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
