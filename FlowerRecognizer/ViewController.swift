@@ -64,7 +64,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.navigationItem.title = firstResult.identifier.capitalized
                 
                 
-                let params : [String : String] = ["format" : "json", "action" : "query", "prop" : "extracts", "exintro" : "", "explantext" : "", "titles" : firstResult.identifier.capitalized, "indexpageids" : "", "redirects" : "1"]
+                let params : [String : String] = ["format" : "json", "action" : "query", "prop" : "extracts", "exintro" : "", "explaintext" : "", "titles" : firstResult.identifier.capitalized, "indexpageids" : "", "redirects" : "1"]
                 
                 self.getWikipediaData(url : self.WIKIPEDIA_URL, parameters : params)
 
@@ -89,7 +89,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func cameraButton(_ sender: UIBarButtonItem) {
         present(imagePicker, animated: true, completion: nil)
     }
-    
     
     func getWikipediaData(url : String, parameters : [String: String]) {
         
