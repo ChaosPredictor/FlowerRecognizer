@@ -16,12 +16,30 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ybW-L1-js4">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ybW-L1-js4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9D9-ko-pdn"/>
+                            <constraint firstItem="ybW-L1-js4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SPl-aF-lwe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ybW-L1-js4" secondAttribute="trailing" id="mmq-1x-bxn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ybW-L1-js4" secondAttribute="bottom" id="sWh-Kl-ODW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="oJZ-Fd-kqc">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="ey0-Ax-wUF"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="ey0-Ax-wUF">
+                            <connections>
+                                <action selector="cameraButton:" destination="BYZ-38-t0r" id="TV8-Cv-zJ0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mainImage" destination="ybW-L1-js4" id="prM-jC-OYS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
