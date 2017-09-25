@@ -9,12 +9,18 @@
 import UIKit
 import CoreML
 import Vision
+import Alamofire
+import SwiftyJSON
+
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let imagePicker = UIImagePickerController()
     
     @IBOutlet weak var mainImage: UIImageView!
+    
+    let WIKIPEDIA_URL = "https://en.wikipedia.org/w/api.php"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +47,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
-    
     func detect(image: CIImage) {
         guard let model = try? VNCoreMLModel(for: FlowerClassifer().model) else {
             fatalError("Loading CoreML Model Failed")
@@ -57,6 +62,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if let firstResult = result.first {
                 //print(firstResult.identifier)
                 self.navigationItem.title = firstResult.identifier.capitalized
+                
+                
+                let params : [String : String] = ["format" : "json", "action" : "query", "prop" : "extracts", "exintro" : "", "explantext" : "", "titles" : firstResult.identifier.capitalized, "indexpageids" : "", "redirects" : "1"]
+                
+                self.getWikipediaData(url : self.WIKIPEDIA_URL, parameters : params)
+
                 //if firstResult.identifier.contains("hotdog") {
                 //    self.navigationItem.title = "Hotdog"
                 //} else {
@@ -75,10 +86,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    
     @IBAction func cameraButton(_ sender: UIBarButtonItem) {
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    
+    func getWikipediaData(url : String, parameters : [String: String]) {
+        
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
+            (responce) in
+            if responce.result.isSuccess {
+                let wikipediaResult : JSON = JSON(responce.result.value!)
+
+                let pageid = wikipediaResult["query"]["pageids"][0].intValue
+                let text = wikipediaResult["query"]["pages"]["\(pageid)"]["extract"]
+
+                print(text)
+
+                //self.updateWeatherData(json: weatherResult)
+            } else {
+                print("Error \(responce.result.error!)" )
+                self.navigationItem.title = "Connection Issues"
+            }
+        }
+        
+    }
+    
     
 }
 
